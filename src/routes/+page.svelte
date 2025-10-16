@@ -8,19 +8,6 @@
   let urgency = 'normal';
   let error = '';
 
-//   function calculateCost() {
-//     console.log("at calculate cost")
-//     if (pages < 1) {
-//       error = 'Number of pages must be at least 1';
-//       return 0;
-//     }
-//     error = '';
-//     let base = 100;
-//     let complexityRate = complexity === 'advanced' ? 200 : 100;
-//     let urgencyRate = urgency === 'urgent' ? 150 : 0;
-//     return base + pages * 20 + complexityRate + urgencyRate;
-//   }
-
   $: error = pages < 1 ? 'Number of pages must be at least 1' : '';
 
   $: cost = error
