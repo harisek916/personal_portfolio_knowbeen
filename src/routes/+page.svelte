@@ -32,17 +32,17 @@
 <div class="p-6 ">
   <h1 class="text-2xl font-bold mb-4">Service Cost Calculator</h1>
 
-  <label>Number of Pages:</label>
-  <input type="number" bind:value={pages} class="border p-2 mb-2" />
+  <label for="pages" >Number of Pages:</label>
+  <input id="pages" type="number" bind:value={pages} class="border p-2 mb-2" />
 
-  <label>Complexity:</label>
-  <select bind:value={complexity} class="border p-2 mb-2">
+  <label for="complexity">Complexity:</label>
+  <select id="complexity" bind:value={complexity} class="border p-2 mb-2">
     <option value="basic">Basic</option>
     <option value="advanced">Advanced</option>
   </select>
 
-  <label>Urgency:</label>
-  <select bind:value={urgency} class="border p-2 mb-2">
+  <label for="urgency" >Urgency:</label>
+  <select id="urgency" bind:value={urgency} class="border p-2 mb-2">
     <option value="normal">Normal</option>
     <option value="urgent">Urgent</option>
   </select>
