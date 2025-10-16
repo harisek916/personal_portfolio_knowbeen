@@ -1,16 +1,68 @@
-<script lang="ts">
-  let pages = 1;
-  let complexity = "basic";
-  let features = 0;
 
-  $: baseRate = 1000;
-  $: total = baseRate * pages + (complexity === "advanced" ? 500 : 0) + features * 200;
+
+
+<script lang="ts">
+  let skills = ['SvelteKit', 'Angular', 'React', 'Django', 'Python','ASP.NET'];
+  let pages = 1;
+  let complexity = 'basic';
+  let urgency = 'normal';
+  let error = '';
+
+//   function calculateCost() {
+//     console.log("at calculate cost")
+//     if (pages < 1) {
+//       error = 'Number of pages must be at least 1';
+//       return 0;
+//     }
+//     error = '';
+//     let base = 100;
+//     let complexityRate = complexity === 'advanced' ? 200 : 100;
+//     let urgencyRate = urgency === 'urgent' ? 150 : 0;
+//     return base + pages * 20 + complexityRate + urgencyRate;
+//   }
+
+  $: error = pages < 1 ? 'Number of pages must be at least 1' : '';
+
+  $: cost = error
+    ? 0
+    : 100 + pages * 20 + (complexity === 'advanced' ? 200 : 100) + (urgency === 'urgent' ? 150 : 0);
+
 </script>
 
-<input type="number" bind:value={pages} min="1" />
-<select bind:value={complexity}>
-  <option value="basic">Basic</option>
-  <option value="advanced">Advanced</option>
-</select>
-<input type="number" bind:value={features} min="0" />
-<p>Total Estimated Cost: ₹{total}</p>
+<div class="p-6">
+  <h1 class="text-3xl font-bold mb-4">About Me</h1>
+  <p class="mb-4">Hi, I'm Muhammed Haris, a fullstack developer...</p>
+  <h2 class="text-xl font-semibold mb-2">Skills</h2>
+  <ul class="grid grid-cols-2 gap-2">
+    {#each skills as skill}
+      <li class="bg-gray-100 p-2 rounded">{skill}</li>
+    {/each}
+  </ul>
+</div>
+
+
+
+<div class="p-6 ">
+  <h1 class="text-2xl font-bold mb-4">Service Cost Calculator</h1>
+
+  <label>Number of Pages:</label>
+  <input type="number" bind:value={pages} class="border p-2 mb-2" />
+
+  <label>Complexity:</label>
+  <select bind:value={complexity} class="border p-2 mb-2">
+    <option value="basic">Basic</option>
+    <option value="advanced">Advanced</option>
+  </select>
+
+  <label>Urgency:</label>
+  <select bind:value={urgency} class="border p-2 mb-2">
+    <option value="normal">Normal</option>
+    <option value="urgent">Urgent</option>
+  </select>
+
+  {#if error}
+    <p class="text-red-500">{error}</p>
+  {/if}
+
+  <p class="mt-4 font-semibold">Estimated Cost: ₹{cost}</p>
+</div>
